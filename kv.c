@@ -8,13 +8,11 @@ struct node{
 };
 
 struct node *head = NULL;
-struct node *current = NULL;
 
 int main(int argc, char *argv[]){
-	char *command = argv[1];
-	int key = atoi(argv[2]);
-	char *value = argv[3];
-	char *file = "database.txt";
+	for (int i = 1; i < argc; i++){
+		char[] command = argv[i];
+	}
 	//put pair into kv
 	if (strcmp(command, "p") == 0){
 		
@@ -40,12 +38,12 @@ int main(int argc, char *argv[]){
 	}
 }
 
-void put(int key, char *value){
-	struct node *link = (struct node*) malloc(sizeof(struct node));
-	link->key = key;
-	link->value = value;
-	link->next = head;
-	head = link;
+void put(struct node** head_ref, int key, char *value){
+	struct node *newNode = (struct node*) malloc(sizeof(struct node));
+	newNode->key = key;
+	newNode->value = value;
+	newNode->next = (*head_ref);
+	(*head_ref) = newNode;
 }
 
 void get(int key){
@@ -58,7 +56,7 @@ void get(int key){
 	}
 }
 
-void delete(int key){
+void delete(struct node** head_ref, int key){
 	struct node *ptr = head;
 	while(ptr != NULL) {
 		if (ptr->key == key){
@@ -79,7 +77,10 @@ void removeAll(){
 }
 
 void printAll(){
+	char buff[255];
 	FILE *fp = fopen("database.txt", "r");
+	
+	
 }
 
 
